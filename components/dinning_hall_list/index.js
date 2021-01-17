@@ -5,7 +5,6 @@ import {MyContext} from "../../context";
 
 const DinningHallList = ({navigation}) => {
   const context = useContext(MyContext);
-  console.log(context);
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Dinning Hall List</Text>
