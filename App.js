@@ -12,13 +12,6 @@ import {
 import {MyProvider} from './context';
 import Routes from './components/routes';
 
-//
-// dbh.collection("characters").doc("mario").set({
-//   employment: "plumber",
-//   outfitColor: "red",
-//   specialAttack: "fdsd"
-// })
-
 export default function App() {
   let [fontsLoaded] = useFonts({
     Tangerine_400Regular,

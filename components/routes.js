@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import {View, Text, Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as firebase from 'firebase';
@@ -22,7 +21,7 @@ const Routes = () => {
   if (context.dbh === null){context.setDbh(dbh);}
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator headerMode={'none'}>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Dinning Hall List" component={DinningHallList} />
         <Stack.Screen name="Dinning Hall" component={DinningHall} />

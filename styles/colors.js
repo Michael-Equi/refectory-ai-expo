@@ -1,6 +1,6 @@
 // Colors
 export const primary = '#DC5A5A';
-export const secondary = '#93A8AC';
+export const secondary = '#EFEFEF';
 export const pink1 = '#E2B4BD';
 export const pink2 = '#9B6A6C';
 export const gray1 = '#333333';
