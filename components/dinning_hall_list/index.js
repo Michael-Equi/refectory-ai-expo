@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {View, ScrollView, SafeAreaView, Button, Text, TouchableOpacity} from 'react-native';
+import {View, ScrollView, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import AppLoading from 'expo-app-loading';
 
 import {MyContext} from "../../context";
