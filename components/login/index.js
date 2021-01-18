@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, View, Text, TouchableOpacity} from 'react-native';
 import image from '../../assets/login_page_image.png';
+import { StatusBar } from 'expo-status-bar';
 
 import styles from '../../styles';
 
@@ -15,6 +16,7 @@ const Login = ({navigation}) => {
           <Text style={{...styles.boldBody, color: 'white'}}>Get Started</Text>
         </TouchableOpacity>
       </View>
+      <StatusBar style="dark" />
     </View>
   )
 }
