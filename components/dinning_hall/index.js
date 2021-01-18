@@ -35,7 +35,8 @@ const DinningHall = ({route, navigation}) => {
 
   if(data === null){
     return (
-      <AppLoading/>
+      // <AppLoading/>
+      <View/>
     )
   }
 

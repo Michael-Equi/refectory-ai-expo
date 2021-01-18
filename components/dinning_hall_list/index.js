@@ -24,7 +24,8 @@ const DinningHallList = ({navigation}) => {
 
   if(dinningHalls === null){
     return (
-      <AppLoading/>
+      // <AppLoading/>
+      <View/>
     )
   }
   return (
