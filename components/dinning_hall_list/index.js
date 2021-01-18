@@ -29,7 +29,7 @@ const DinningHallList = ({navigation}) => {
   }
   return (
     <SafeAreaView style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}>
-      <ScrollView style={{}}>
+      <ScrollView style={{alignSelf: 'stretch'}}>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'top-center'}}>
           {dinningHalls.data.map((hall, index) => (<Card {...hall} navigation={navigation} key={index}/>))}
         </View>

@@ -66,7 +66,7 @@ const DinningHall = ({route, navigation}) => {
             : null))}
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.slackButton} onPress={() => {navigation.navigate("Slack")}}>
+      <TouchableOpacity style={styles.slackButton} onPress={() => {navigation.navigate("Slack", {items: selected.items})}}>
         <Text style={{padding: 20, marginBottom: 20, ...styles.boldBody, color: 'white'}}>Send to Slack</Text>
       </TouchableOpacity>
     </SafeAreaView>

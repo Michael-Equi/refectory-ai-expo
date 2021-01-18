@@ -1,7 +1,8 @@
 import React from 'react';
-import {TouchableOpacity, Text, Image} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
 
 import checkbox from '../../assets/Checkbox.png';
+import styles from '../../styles';
 
 const FoodCard = ({name, image, contents, round, pressedHandler, selected}) => {
 
@@ -17,11 +18,8 @@ const FoodCard = ({name, image, contents, round, pressedHandler, selected}) => {
   }
 
   return (
-    <TouchableOpacity style={{borderRadius: borderRadius, backgroundColor: 'grey', width: width, height: height, margin: 10,
-      marginLeft: 10 + margin, marginRight: 10 + margin,
-      alignItems: 'center', justifyContent: 'center', shadowColor: 'grey', shadowOpacity: 0.6, shadowOffset: {
-        height: 7
-      }}}
+    <TouchableOpacity style={{...styles.foodCard, borderRadius: borderRadius, width: width, height: height,
+      marginLeft: 10 + margin, marginRight: 10 + margin}}
                       onPress={() => pressedHandler(name)}>
       <Image source={{uri: image}} style={{width: width-10, height: height-10, borderRadius: borderRadius, }}/>
       {

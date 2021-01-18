@@ -123,5 +123,23 @@ export default styles = StyleSheet.create({
     borderRadius: 20,
     transform: [{translateX: -30}]
   },
+  textInput: {
+    backgroundColor: colors.secondary,
+    borderRadius: 20,
+    margin: 20,
+    marginTop: 50,
+    padding: 30,
+    paddingTop: 20
+  },
+  foodCard: {
+    backgroundColor: colors.primary,
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: 'grey',
+    shadowOpacity: 0.6,
+    shadowOffset: {
+      height: 7
+    }},
   ...fonts
 });
