@@ -5,12 +5,14 @@ import {MyContext} from "../../context";
 import AppLoading from "expo-app-loading";
 import FoodCard from "./foodCards";
 import styles from '../../styles';
+import * as colors from '../../styles/colors';
 
 const DinningHall = ({route, navigation}) => {
   const context = useContext(MyContext);
   const db = context.dbh;
   const [data, setData] = useState(null);
   const [selected, setSelected] = useState({items: []});
+  const [section, setSection] = useState(1);
 
   useEffect(() => {
     const doc = db.collection("streams").doc(route.params.streamid);
@@ -37,58 +39,35 @@ const DinningHall = ({route, navigation}) => {
     )
   }
 
+  const getTextDecor = (i) => (section === i ? 'underline' : 'none');
+  const getTextColor = (i) => (section === i ? colors.primary : colors.gray3);
+
   return (
-    <SafeAreaView style={{...styles.container, flex: 1, flexDirection: 'column'}}>
-      <View style={{marginTop: 10, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center'}}>
-        <Text>{route.params.name}</Text>
-        <View style={{height: 40, alignSelf: 'stretch', flexDirection: "row", margin: 30, marginTop: 10, marginBottom: 0, justifyContent: 'space-between'}}>
-          <Button title={"Section 1"}/>
-          <Button title={"Section 2"}/>
-          <Button title={"Section 3"}/>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.dinningHallHeaderContainer}>
+        <Text style={{...styles.heading1, fontFamily: 'Tangerine_400Regular', paddingRight: 10}}>{route.params.name}</Text>
+        <View style={styles.dinningHallSectionSelectorContainer}>
+          <TouchableOpacity style={styles.centered} onPress={() => {setSection(1)}}>
+            <Text style={{ ...styles.body, textDecorationLine: getTextDecor(1), color: getTextColor(1)}}>Section 1</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.centered} onPress={() => {setSection(2)}}>
+            <Text style={{ ...styles.body, textDecorationLine: getTextDecor(2), color: getTextColor(2)}}>Section 2</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.centered} onPress={() => {setSection(3)}}>
+            <Text style={{ ...styles.body, textDecorationLine: getTextDecor(3), color: getTextColor(3)}}>Section 3</Text>
+          </TouchableOpacity>
         </View>
-        <View style={{borderBottomColor: 'black', borderBottomWidth: 1, alignSelf: 'stretch', margin: 50, marginTop: 10, marginBottom: 10}}/>
+        <View style={styles.horizontalRule}/>
       </View>
       <ScrollView style={{flex: 1, alignSelf: 'stretch'}}>
-        <View style={{flex: 1, flexDirection: "row", flexWrap: 'wrap', justifyContent: 'space-between', alignItems: "center"}}>
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} round={dish.round}
-                                                     pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={dish.round}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={dish.round}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={dish.round}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={true}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={true}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={true}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
-          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
-                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
-                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+        <View style={styles.dinningHallScrollContainer}>
+          {data.dishes.map((dish, idx) => (dish.section === section ?
+            <FoodCard {...dish} pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>
+            : null))}
         </View>
       </ScrollView>
-      <TouchableOpacity style={{position: 'absolute', bottom: 0, margin: 50, height: 50, backgroundColor: 'red',
-        alignSelf: 'flex-end', justifyContent: 'center', borderRadius: 20, transform: [{translateX: -30}]}}
-      onPress={() => {navigation.navigate("Slack")}}>
-        <Text style={{padding: 20, marginBottom: 20}}>Send to Slack</Text>
+      <TouchableOpacity style={styles.slackButton} onPress={() => {navigation.navigate("Slack")}}>
+        <Text style={{padding: 20, marginBottom: 20, ...styles.boldBody, color: 'white'}}>Send to Slack</Text>
       </TouchableOpacity>
     </SafeAreaView>
   )

@@ -3,6 +3,10 @@ import * as colors  from './colors';
 import fonts from './fonts';
 
 export default styles = StyleSheet.create({
+  centered: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -14,6 +18,14 @@ export default styles = StyleSheet.create({
     fontSize: 72,
     margin: 90,
     color: '#000'
+  },
+  horizontalRule: {
+    borderBottomColor: colors.secondary,
+    borderBottomWidth: 1,
+    alignSelf: 'stretch',
+    margin: 50,
+    marginTop: 10,
+    marginBottom: 5
   },
   loginBackgroundImage : {
     width: 1380,
@@ -77,6 +89,39 @@ export default styles = StyleSheet.create({
     padding: 0,
     paddingBottom: 90,
     paddingLeft: 2.5
+  },
+  dinningHallHeaderContainer: {
+    marginTop: 10,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  dinningHallSectionSelectorContainer: {
+    height: 40,
+    alignSelf: 'stretch',
+    flexDirection: "row",
+    margin: 60,
+    marginTop: 10,
+    marginBottom: 0,
+    justifyContent: 'space-between'
+  },
+  dinningHallScrollContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: "center"
+  },
+  slackButton: {
+    position: 'absolute',
+    bottom: 0,
+    margin: 50,
+    height: 50,
+    backgroundColor: colors.primary,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    borderRadius: 20,
+    transform: [{translateX: -30}]
   },
   ...fonts
 });

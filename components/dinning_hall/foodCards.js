@@ -3,7 +3,7 @@ import {TouchableOpacity, Text, Image} from 'react-native';
 
 import checkbox from '../../assets/Checkbox.png';
 
-const FoodCard = ({dish, image, contents, round, pressedHandler, selected}) => {
+const FoodCard = ({name, image, contents, round, pressedHandler, selected}) => {
 
   let width = 130;
   let height = 130;
@@ -22,7 +22,7 @@ const FoodCard = ({dish, image, contents, round, pressedHandler, selected}) => {
       alignItems: 'center', justifyContent: 'center', shadowColor: 'grey', shadowOpacity: 0.6, shadowOffset: {
         height: 7
       }}}
-                      onPress={() => pressedHandler(dish)}>
+                      onPress={() => pressedHandler(name)}>
       <Image source={{uri: image}} style={{width: width-10, height: height-10, borderRadius: borderRadius, }}/>
       {
         selected ?
