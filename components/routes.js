@@ -10,6 +10,7 @@ import {MyContext} from "../context";
 import Login from "./login";
 import DinningHallList from "./dinning_hall_list";
 import DinningHall from "./dinning_hall";
+import Slack from './dinning_hall/slack';
 
 firebase.initializeApp(firebaseConfig);
 const dbh = firebase.firestore();
@@ -25,6 +26,7 @@ const Routes = () => {
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Dinning Hall List" component={DinningHallList} />
         <Stack.Screen name="Dinning Hall" component={DinningHall} />
+        <Stack.Screen name="Slack" component={Slack} />
       </Stack.Navigator>
     </NavigationContainer>
   )

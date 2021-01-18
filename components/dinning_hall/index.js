@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView, Button, TouchableOpacity} from 'react-native';
 
 import {MyContext} from "../../context";
 import AppLoading from "expo-app-loading";
@@ -38,25 +38,58 @@ const DinningHall = ({route, navigation}) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Dinning Hall</Text>
-        <Text>{route.params.streamid}</Text>
+    <SafeAreaView style={{...styles.container, flex: 1, flexDirection: 'column'}}>
+      <View style={{marginTop: 10, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center'}}>
+        <Text>{route.params.name}</Text>
+        <View style={{height: 40, alignSelf: 'stretch', flexDirection: "row", margin: 30, marginTop: 10, marginBottom: 0, justifyContent: 'space-between'}}>
+          <Button title={"Section 1"}/>
+          <Button title={"Section 2"}/>
+          <Button title={"Section 3"}/>
+        </View>
+        <View style={{borderBottomColor: 'black', borderBottomWidth: 1, alignSelf: 'stretch', margin: 50, marginTop: 10, marginBottom: 10}}/>
       </View>
       <ScrollView style={{flex: 1, alignSelf: 'stretch'}}>
-        <View style={{flex: 1, flexDirection: "row", justifyContent: 'space-between', alignItems: "center"}}>
+        <View style={{flex: 1, flexDirection: "row", flexWrap: 'wrap', justifyContent: 'space-between', alignItems: "center"}}>
           {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
                                                      content={dish.contents} round={dish.round}
                                                      pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>))}
           {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
                                                      content={dish.contents} selected={selected.items.includes(dish.name)} round={dish.round}
                                                      pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={dish.round}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={dish.round}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={true}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={true}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={true}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
+          {data.dishes.map((dish, idx) => (<FoodCard dish={dish.name} image={dish.image}
+                                                     content={dish.contents} selected={selected.items.includes(dish.name)} round={false}
+                                                     pressedHandler={foodPressedHandler} key={idx}/>))}
         </View>
       </ScrollView>
-      <View>
-        <Text>Dinning Hall</Text>
-        <Text>{route.params.streamid}</Text>
-      </View>
+      <TouchableOpacity style={{position: 'absolute', bottom: 0, margin: 50, height: 50, backgroundColor: 'red',
+        alignSelf: 'flex-end', justifyContent: 'center', borderRadius: 20, transform: [{translateX: -30}]}}
+      onPress={() => {navigation.navigate("Slack")}}>
+        <Text style={{padding: 20, marginBottom: 20}}>Send to Slack</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   )
 }
