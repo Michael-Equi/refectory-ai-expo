@@ -33,6 +33,24 @@ const DinningHall = ({route, navigation}) => {
     setSelected({items: items});
   }
 
+  const generateFoodCards = () => {
+    switch (section){
+      case 1:
+        return data.section1.map((dish, idx) => (
+          <FoodCard {...dish} pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>
+          ));
+      case 2:
+        return data.section2.map((dish, idx) => (
+          <FoodCard {...dish} pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>
+        ));
+      case 3:
+        return data.section3.map((dish, idx) => (
+          <FoodCard {...dish} pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>
+        ));
+    }
+
+  }
+
   if(data === null){
     return (
       // <AppLoading/>
@@ -62,9 +80,9 @@ const DinningHall = ({route, navigation}) => {
       </View>
       <ScrollView style={{flex: 1, alignSelf: 'stretch'}}>
         <View style={styles.dinningHallScrollContainer}>
-          {data.dishes.map((dish, idx) => (dish.section === section ?
-            <FoodCard {...dish} pressedHandler={foodPressedHandler} selected={selected.items.includes(dish.name)} key={idx}/>
-            : null))}
+          {
+            generateFoodCards()
+          }
         </View>
       </ScrollView>
       <TouchableOpacity style={styles.slackButton} onPress={() => {navigation.navigate("Slack", {items: selected.items})}}>

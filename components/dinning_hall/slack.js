@@ -8,7 +8,7 @@ import * as colors from "../../styles/colors";
 const Slack = ({route, navigation}) => {
   const textInput = useRef();
   const items = route.params.items;
-  const string = "May I have the following meal saved?\n" + "\n" + items.map((item) => (` -> ${item}\n`))  + "\n" + "Thanks!\n" + "\n" + "* sent with Refectory";
+  const string = "May I have the following meal saved?\n\n" + items.map((item) => (` -> ${item}\n`)).join('')  + "\nThanks!\n\n* sent with Refectory";
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
